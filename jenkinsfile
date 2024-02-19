@@ -5,9 +5,15 @@ pipeline{
 
     agent any
 
-    tools {
-        terraform 'terraform'
+    environment {
+        AWS_ACCESS_KEY_ID = credentials('terraform-lab')
+        AWS_SECRET_ACCESS_KEY =credentials('terraform-lab')
+
     }
+
+    /**tools {
+        terraform 'terraform'
+    }**/
 
     stages{
         stage('Terraform Virsion Checking'){
