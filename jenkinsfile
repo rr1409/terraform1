@@ -35,7 +35,7 @@ pipeline{
         stage('Terraform Planning'){
             steps{
                 echo 'Terraform Planning started...'
-                sh 'terraform plan'
+                sh 'terraform plan -var-file=terraform.tfvars -out=tfplan.txt'
                 echo 'Terraform planning completed!!'
             }
         }
