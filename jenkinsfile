@@ -1,0 +1,55 @@
+pipeline{
+    options{
+        buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
+    }
+
+    agent any
+
+    tools {
+        terraform 'terraform'
+    }
+
+    stages{
+        stage('Terraform Virsion Checking'){
+            steps{
+                echo 'Checking Terraform Version...'
+                sh 'terraform --version'
+                echo 'Terraform version is ok'
+            }
+        }
+
+        stage('Terraform Initiallisation'){
+            steps{
+                echo 'Terraform Initiallisation started...'
+                sh 'terraform init'
+                echo 'Terraform initiallisation completed!!'
+            }
+        }
+
+        stage('Terraform Planning'){
+            steps{
+                echo 'Terraform Planning started...'
+                sh 'terraform plan'
+                echo 'Terraform planning completed!!'
+            }
+        }
+
+        stage('Terraform Apply'){
+            steps{
+                echo 'Terraform apply started...'
+                sh 'terraform apply --auto-approve'
+                echo 'Terraform Auto apply completed!!'
+            }
+        }
+
+        stage('Terraform Destroy'){
+            steps{
+                echo 'Terraform Distroy started...'
+                /**sh 'terraform distroy --auto-approve' **/
+                echo 'Terraform auto distroy completed!!'
+            }
+        }
+    }
+
+    
+}
