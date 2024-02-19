@@ -50,9 +50,9 @@ pipeline{
 
         stage('Terraform Destroy'){
             steps{
-                echo 'Terraform Distroy started...'
-                sh 'terraform distroy --auto-approve'
-                echo 'Terraform auto distroy completed!!'
+                echo 'Terraform Destroy started...'
+                sh 'terraform destroy --auto-approve'
+                echo 'Terraform auto destroy completed!!'
             }
         }
     }
